@@ -27,7 +27,7 @@ def gameover():
 def show_score():
     '''displays score in top left part of screen'''
     font = pygame.font.Font('freesansbold.ttf',20)
-    textSurface = font.render('score: {}'.format(score), True, (0,0,0))
+    textSurface = font.render('score: {}'.format(score), True, (255,255,255))
     textRect = textSurface.get_rect()
     textRect.left = 10
     textRect.top = 10
