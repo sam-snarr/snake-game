@@ -91,7 +91,7 @@ while True:
     
     # checks if snake goes outside of box
     if snake_array[0].x < 0 or snake_array[0].x >= x_width or snake_array[0].y < 0 or snake_array[0].y >= y_width:
-        gameover()
+        gameover() 
 
     # checks if snake touches itself
     for r in snake_array[1:]:
