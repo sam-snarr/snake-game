@@ -5,16 +5,16 @@ import random
 
 pygame.init()
 
-x_width = 720
-y_width = 480
-screen = pygame.display.set_mode((x_width, y_width))
+width = 720
+height = 480
+screen = pygame.display.set_mode((width, height))
 
 def gameover():
     '''displays message when game is over and then waits for keypress to exit'''
     font = pygame.font.Font('freesansbold.ttf',35)
     textSurface = font.render('Game over: Press key to quit', True, (0,0,0))
     textRect = textSurface.get_rect()
-    textRect.center = (x_width/2, y_width/2)
+    textRect.center = (width/2, height/2)
     screen.blit(textSurface, textRect) 
     pygame.display.update()
 
@@ -43,7 +43,7 @@ for i in range(2):
     snake_array.append(r)
 
 # create fruit
-fruit = pygame.Rect(random.randint(0, x_width/20)*20, random.randint(0, y_width/20)*20, 20, 20   )
+fruit = pygame.Rect(random.randint(0, width/20)*20, random.randint(0, height/20)*20, 20, 20   )
 dir='RIGHT'
 score=0
 
@@ -84,13 +84,13 @@ while True:
     # if snake touches fruit then it grows one unit by keeping its last unit between frames, otherwise it loses the last unit
     if snake_array[0].x == fruit.x and snake_array[0].y == fruit.y:
         score += 1
-        fruit.x = random.randint(0, x_width/20)*20
-        fruit.y = random.randint(0, y_width/20)*20
+        fruit.x = random.randint(0, width/20)*20
+        fruit.y = random.randint(0, height/20)*20
     else:
         snake_array.pop()
     
     # checks if snake goes outside of box
-    if snake_array[0].x < 0 or snake_array[0].x >= x_width or snake_array[0].y < 0 or snake_array[0].y >= y_width:
+    if snake_array[0].x < 0 or snake_array[0].x >= width or snake_array[0].y < 0 or snake_array[0].y >= height:
         gameover() 
 
     # checks if snake touches itself
