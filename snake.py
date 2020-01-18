@@ -105,12 +105,11 @@ while True:
     for r in snake_array:
         pygame.draw.rect(screen, (255,255,255), r, 1)
     
-    show_score()
-
     # draw the fruit
     pygame.draw.rect(screen, (0, 255, 0), fruit, 0)
-
     
+    show_score()
+   
     pygame.display.update()
             
         
