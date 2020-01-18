@@ -5,8 +5,8 @@ import random
 
 pygame.init()
 
-width = 720
-height = 480
+width = 1080
+height = 720
 screen = pygame.display.set_mode((width, height))
 
 def gameover():
