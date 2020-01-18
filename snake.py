@@ -38,19 +38,19 @@ def show_score():
 
 # creates snake
 snake_array = []
-for i in range(3):
-    r = pygame.Rect(100-i*10, 100, 10, 10)
+for i in range(2):
+    r = pygame.Rect(100-i*20, 100, 20, 20)
     snake_array.append(r)
 
 # create fruit
-fruit = pygame.Rect(random.randint(0, x_width/10)*10, random.randint(0, y_width/10)*10, 10, 10   )
+fruit = pygame.Rect(random.randint(0, x_width/20)*20, random.randint(0, y_width/20)*20, 20, 20   )
 dir='RIGHT'
 score=0
 
 # main loop 
 while True:
     # set framerate (higher is more difficult)
-    pygame.time.Clock().tick(10) 
+    pygame.time.Clock().tick(20) 
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -73,24 +73,24 @@ while True:
 
     # depending what direction is pressed, insert a new head in that direction
     if dir=='UP':
-        snake_array.insert(0, pygame.Rect(head_x, head_y-10, 10,10))
+        snake_array.insert(0, pygame.Rect(head_x, head_y-20, 20,20))
     elif dir=='RIGHT':
-        snake_array.insert(0, pygame.Rect(head_x+10, head_y, 10,10))
+        snake_array.insert(0, pygame.Rect(head_x+20, head_y, 20,20))
     elif dir=='LEFT':
-        snake_array.insert(0, pygame.Rect(head_x-10, head_y, 10,10))
+        snake_array.insert(0, pygame.Rect(head_x-20, head_y, 20,20))
     elif dir=='DOWN':
-        snake_array.insert(0, pygame.Rect(head_x, head_y+10, 10,10))
+        snake_array.insert(0, pygame.Rect(head_x, head_y+20, 20,20))
 
-    # if snake touches fruit then it grows one unit by keeping its tail between frames, otherwise it loses one unit
+    # if snake touches fruit then it grows one unit by keeping its last unit between frames, otherwise it loses the last unit
     if snake_array[0].x == fruit.x and snake_array[0].y == fruit.y:
         score += 1
-        fruit.x = random.randint(0, x_width/10)*10
-        fruit.y = random.randint(0, y_width/10)*10
+        fruit.x = random.randint(0, x_width/20)*20
+        fruit.y = random.randint(0, y_width/20)*20
     else:
         snake_array.pop()
     
     # checks if snake goes outside of box
-    if snake_array[0].x < 0 or snake_array[0].x > x_width or snake_array[0].y < 0 or snake_array[0].y > y_width:
+    if snake_array[0].x < 0 or snake_array[0].x >= x_width or snake_array[0].y < 0 or snake_array[0].y >= y_width:
         gameover()
 
     # checks if snake touches itself
@@ -99,7 +99,7 @@ while True:
             gameover()
 
     # fill screen with color to remove prior pieces
-    screen.fill((60,15,200, 1))
+    screen.fill((60,15,200))
 
     # draw each rectangle of snake
     for r in snake_array:
