@@ -8,6 +8,7 @@ pygame.init()
 width = 1080
 height = 720
 screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption('Snake Game')
 
 def gameover():
     '''displays message when game is over and then waits for keypress to exit'''
@@ -43,9 +44,11 @@ for i in range(2):
     snake_array.append(r)
 
 # create fruit
-fruit = pygame.Rect(random.randint(0, width/20)*20, random.randint(0, height/20)*20, 20, 20   )
+fruit = pygame.Rect(random.randint(0, width/20-1)*20, random.randint(0, height/20-1)*20, 20, 20 )
 dir='RIGHT'
 score=0
+
+
 
 # main loop 
 while True:
@@ -65,7 +68,13 @@ while True:
                 dir = 'LEFT'
             elif event.key == pygame.K_DOWN and dir != 'UP':
                 dir = 'DOWN'
-
+            elif event.key == pygame.K_SPACE:
+                # pause game if space bar pressed
+                dir = None
+    if not dir: 
+        # if space bar has been pressed then go back to beginning
+        continue
+      
     # get head of snake
     head = snake_array[0]
     head_x = head.x
@@ -84,8 +93,8 @@ while True:
     # if snake touches fruit then it grows one unit by keeping its last unit between frames, otherwise it loses the last unit
     if snake_array[0].x == fruit.x and snake_array[0].y == fruit.y:
         score += 1
-        fruit.x = random.randint(0, width/20)*20
-        fruit.y = random.randint(0, height/20)*20
+        fruit.x = random.randint(0, width/20-1)*20
+        fruit.y = random.randint(0, height/20-1)*20
     else:
         snake_array.pop()
     
