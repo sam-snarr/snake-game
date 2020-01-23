@@ -45,6 +45,7 @@ for i in range(2):
 
 # create fruit
 fruit = pygame.Rect(random.randint(0, width/20-1)*20, random.randint(0, height/20-1)*20, 20, 20 )
+
 dir='RIGHT'
 score=0
 
@@ -112,7 +113,8 @@ while True:
 
     # draw each rectangle of snake
     for r in snake_array:
-        pygame.draw.rect(screen, (255,255,255), r, 1)
+        pygame.draw.rect(screen, (255,255,255), r, 0)
+        pygame.draw.rect(screen, (0, 0, 0), r, 1) # outline of box
     
     # draw the fruit
     pygame.draw.rect(screen, (0, 255, 0), fruit, 0)
